@@ -1,0 +1,105 @@
+#toppart{
+  margin: 0 auto;
+  width: 750px;
+}
+
+#board{
+  width: 350px;
+  height: 420px;
+  margin: 0 auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 75px 75px 75px 75px 75px;
+  grid-template-rows: 75px 75px 75px 75px 75px;
+  justify-content: center;
+
+}
+
+#board > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+#preview{
+  width: 500px;
+  height: 100px;
+}
+
+#tetris{
+  border: 2px solid #f2ede4;
+  border-radius: 4px;
+  margin: 0 auto;
+  position: absolute;
+  left: calc(50% + 400px);
+  top: 10px;
+  transform: translate(-50%, 0);
+}
+
+.row{
+  grid-template-columns: 75px 75px 75px 75px 75px;
+  display: grid;
+  justify-content: center
+}
+
+.rowp{
+  grid-template-columns: 25px 25px 25px 25px 25px;
+  display: grid;
+  justify-content: center
+}
+
+.letter {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.letterp {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 5px;
+  font-size: 10px;
+  text-align: center;
+}
+
+#word{
+  width: 600px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+#keyboard{
+  width: 600px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.row1k{
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  display: grid;
+  justify-content: center;
+}
+
+.row2k{
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  display: grid;
+  justify-content: center;
+}
+
+.row3k{
+  grid-template-columns: 100px 50px 50px 50px 50px 50px 50px 50px 100px;
+  display: grid;
+  justify-content: center;
+}
+
+.key{
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: auto;
+  font-size: 30px;
+  text-align: center;
+}
