@@ -19,22 +19,18 @@ function onKeyDown(e) {
     } else if (e.keyCode == 13) {
       if (currentLetterPlace == 5) {
         if (answer.includes(currentGuess)) {
-          colorRow(getLetterColors(answer, currentGuess))
+          var colors = getLetterColors(answer, currentGuess)
+          colorRow(colors)
+          colorKeyBoard(colors)
           informUser(currentGuess + " is the word!")
         } else if (isWord(currentGuess)) {
-          colorRow(getLetterColors(answer, currentGuess))
+          var colors = getLetterColors(answer, currentGuess)
+          colorRow(colors)
+          colorKeyBoard(colors)
           informUser(currentGuess + " is not the word :(")
           currentLetterPlace = 0
           currentRowNum++
-          var piece = getLetterColors(answer, currentGuess)
-          var creationBlock = []
-          for(var i = 0; i < piece.length; i++){
-            if(piece[i] == "white") {creationBlock[i] = 0}
-            else {creationBlock[i] = 1}
-          }
-          currentShape = creationBlock
           currentGuess = ""
-          isTetris = true
         } else {
           informUser(currentGuess + " is not a word...")
         }

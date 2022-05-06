@@ -17,6 +17,29 @@ fetch('js/words.txt')
     answer = debug || words[Math.floor(Math.random()*words.length)]
   })
 
+function colorKeyBoard(colorList){
+  for(var i = 0; i < 25; i++){
+    var key = 'abcdefghijklmnopqrstuvwxyz'[i]
+    var keyInAnswer = currentGuess.indexOf(key)
+    var elem = getKeyElement(key)
+    if(keyInAnswer != -1){
+      var color = colorList[keyInAnswer]
+      if(color == 'white') color = 'black'
+      elem.style['background-color'] = color
+    }
+  }
+
+  function getKeyElement(key){
+    var keys = document.getElementsByClassName("key")
+    for(var i = 0; i < keys.length; i++){
+      if(keys[i].innerText == key.toUpperCase()){
+        return keys[i]
+      }
+    }
+  }
+
+}
+
 function informUser(str){
   document.getElementById("word").innerText = str
 }
@@ -53,18 +76,16 @@ function getLetterColors(answer, word) {
   var colors = []
 
   for (var i = 0; i < 5; i++) {
-    var letter = word[i]
-    if (answer[i] == letter) {
+    if(word[i] == answer[i]){
       colors[i] = "green"
       answer = answer.slice(0, i) + "-" + answer.slice(i + 1)
     }
   }
-
   for (var i = 0; i < 5; i++) {
     var letter = word[i]
     if ((answer[i] != letter) && answer.includes(letter)) {
       var whereIsIt = answer.indexOf(letter)
-      colors[i] = "yellow"
+      if(!colors[i]) colors[i] = "yellow"
       answer = answer.slice(0, whereIsIt) + "-" + answer.slice(whereIsIt + 1)
     }
   }
