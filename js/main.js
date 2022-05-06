@@ -8,24 +8,27 @@ var currentRowNum = 0
 var currentGuess = ""
 
 var words = []
+var debug = "larry"
 var answer = ""
 fetch('js/words.txt')
   .then(response => response.text())
   .then(text => {
     words = text.split("\n")
-    answer = words[Math.floor(Math.random()*words.length)]
+    answer = debug || words[Math.floor(Math.random()*words.length)]
   })
+
+function informUser(str){
+  document.getElementById("word").innerText = str
+}
 
 function clearBox(num) {
   var place = document.getElementsByClassName('letter' + (num))[0]
   place.innerText = ""
-  console.log(place)
 }
 
 function clearRow(num) { //row num 0-n
   var start = (num * 5)
   for (var i = start; i < start + 5; i++) {
-    console.log(i)
     var place = document.getElementsByClassName('letter' + i)[0]
     place.innerText = ""
   }
@@ -58,7 +61,6 @@ function getLetterColors(answer, word) {
   }
 
   for (var i = 0; i < 5; i++) {
-    console.log(answer)
     var letter = word[i]
     if ((answer[i] != letter) && answer.includes(letter)) {
       var whereIsIt = answer.indexOf(letter)

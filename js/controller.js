@@ -1,17 +1,4 @@
-keys = {
-        37: ['ArrowLeft', 'left', false],
-        39: ['ArrowRight', 'right', false],
-        40: ['ArrowDown', 'down', false],
-        90: ['z', 'rotateCW', false],
-        88: ['x', 'rotateCCW', false],
-        32: ['spacebar', 'hardDrop', false]
-    };
-
-var isTetris = false
-
 function onKeyDown(e) {
-  if(currentShape == null ) isTetris = false
-  if(!isTetris){
     var totalPlace = (currentRowNum * 5) + currentLetterPlace
     if ("abcdefghijklmnopqrstuvwxyz".includes(e.key)) {
       if (impressible) return;
@@ -33,10 +20,10 @@ function onKeyDown(e) {
       if (currentLetterPlace == 5) {
         if (answer.includes(currentGuess)) {
           colorRow(getLetterColors(answer, currentGuess))
-          console.log(currentGuess + " is the word")
+          informUser(currentGuess + " is the word!")
         } else if (isWord(currentGuess)) {
           colorRow(getLetterColors(answer, currentGuess))
-          console.log(currentGuess + " is NOT the word")
+          informUser(currentGuess + " is not the word :(")
           currentLetterPlace = 0
           currentRowNum++
           var piece = getLetterColors(answer, currentGuess)
@@ -49,31 +36,10 @@ function onKeyDown(e) {
           currentGuess = ""
           isTetris = true
         } else {
-          console.log(currentGuess + " is NOT a word")
+          informUser(currentGuess + " is not a word...")
         }
       }
     }
-  } else {
-    if (document.activeElement.tagName != "INPUT" && typeof keys[e.keyCode] != 'undefined') {
-      var isDown = keys[e.keyCode][2]
-      if(isDown) return
-      keys[e.keyCode][2] = true
-      keyPress(keys[e.keyCode][1],false);
-  }
-  }
 }
-
-function onKeyUp(e){
-  if(isTetris){
-    if (document.activeElement.tagName != "INPUT" && typeof keys[e.keyCode] != 'undefined') {
-        var isDown = keys[e.keyCode][2]
-        keys[e.keyCode][2] = false
-        keyPress(keys[e.keyCode][1],true);
-    }
-  }
-}
-
-
 
 document.addEventListener('keydown', onKeyDown);
-document.addEventListener('keyup', onKeyUp);

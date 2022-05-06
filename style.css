@@ -70,6 +70,8 @@
   width: 600px;
   height: 100px;
   margin: 0 auto;
+  text-align: center;
+  font-size: 20px;
 }
 
 #keyboard{
