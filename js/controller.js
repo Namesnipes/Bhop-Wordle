@@ -1,8 +1,9 @@
 function onKeyDown(e) {
-    var totalPlace = (currentRowNum * 5) + currentLetterPlace
+    if(answer == "") return
+    var totalPlace = (currentRowNum * len) + currentLetterPlace
     if ("abcdefghijklmnopqrstuvwxyz".includes(e.key)) {
       if (impressible) return;
-      if(currentLetterPlace != 5)
+      if(currentLetterPlace != len)
       {
         var place = document.getElementsByClassName('letter' + totalPlace)[0]
         place.innerText = e.key
@@ -17,7 +18,7 @@ function onKeyDown(e) {
         currentLetterPlace -= 1
       }
     } else if (e.keyCode == 13) {
-      if (currentLetterPlace == 5) {
+      if (currentLetterPlace == len) {
         if (answer.includes(currentGuess)) {
           var colors = getLetterColors(answer, currentGuess)
           colorRow(colors)

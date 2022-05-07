@@ -8,13 +8,31 @@ var currentRowNum = 0
 var currentGuess = ""
 
 var words = []
-var debug = "larry"
+var debug = ""
 var answer = ""
-fetch('js/words.txt')
+var answers = []
+var len = 0
+fetch('js/answers.txt')
   .then(response => response.text())
-  .then(text => {
-    words = text.split("\n")
-    answer = debug || words[Math.floor(Math.random()*words.length)]
+  .then(atext => {
+    answers = atext.split(/\r?\n/);
+    answer = debug || answers[Math.floor(Math.random()*answers.length)].replace(/\s/g, "");
+    fetch('js/words' + answer.length + ".txt")
+    .then(response => response.text())
+    .then(text => {
+      words = text.split(/\r?\n/);
+      console.log(words)
+      len = answer.length
+      var board = document.getElementById("board")
+      board.style['grid-template-columns'] = "75px ".repeat(answer.length);
+      console.log("75px ".repeat(answer.length));
+      var letter = document.getElementsByClassName("letter0")[0]
+      for(var i = 1; i < (answer.length * 6); i++){
+        var newletter = letter.cloneNode()
+        newletter.className = "letter" + i
+        board.appendChild(newletter)
+      }
+  })
   })
 
 function colorKeyBoard(colorList){
@@ -58,8 +76,9 @@ function clearRow(num) { //row num 0-n
 }
 
 function colorRow(colors) {
-  for (var i = 0; i < 5; i++) {
-    document.getElementsByClassName('letter' + ((currentRowNum * 5) + i))[0].style["background-color"] = colors[i]
+  for (var i = 0; i < len; i++) {
+    document.getElementsByClassName('letter' + ((currentRowNum * len) + i))[0].style["background-color"] = colors[i]
+    console.log(document.getElementsByClassName('letter' + ((currentRowNum * len) + i)))
   }
 }
 
@@ -69,19 +88,24 @@ function isWord(word){
       return true;
     }
   }
+  for(var i = 0; i < answers.length; i++){
+    if(word == answers[i]){
+      return true;
+    }
+  }
   return false
 }
 
 function getLetterColors(answer, word) {
   var colors = []
 
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < len; i++) {
     if(word[i] == answer[i]){
       colors[i] = "green"
       answer = answer.slice(0, i) + "-" + answer.slice(i + 1)
     }
   }
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < len; i++) {
     var letter = word[i]
     if ((answer[i] != letter) && answer.includes(letter)) {
       var whereIsIt = answer.indexOf(letter)
@@ -90,7 +114,7 @@ function getLetterColors(answer, word) {
     }
   }
 
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < len; i++) {
     if (colors[i] == null) {
       colors[i] = "white"
     }
