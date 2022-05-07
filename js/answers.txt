@@ -15,7 +15,7 @@ times
 wr
 quat
 drumman
-st0tty
+stotty
 mudkips
 frxzt
 mooman

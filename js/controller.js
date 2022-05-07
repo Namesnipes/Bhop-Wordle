@@ -11,13 +11,13 @@ function onKeyDown(e) {
         currentLetterPlace++
       }
 
-    } else if (e.keyCode == 8) {
+    } else if (e.keyCode == 8) { //backspace
       if(currentLetterPlace != 0){
         currentGuess = currentGuess.substr(0,currentGuess.length-1)
         clearBox(totalPlace-1)
         currentLetterPlace -= 1
       }
-    } else if (e.keyCode == 13) {
+    } else if (e.keyCode == 13) { //enter
       if (currentLetterPlace == len) {
         if (answer.includes(currentGuess)) {
           var colors = getLetterColors(answer, currentGuess)
@@ -28,10 +28,14 @@ function onKeyDown(e) {
           var colors = getLetterColors(answer, currentGuess)
           colorRow(colors)
           colorKeyBoard(colors)
-          informUser(currentGuess + " is not the word :(")
-          currentLetterPlace = 0
-          currentRowNum++
-          currentGuess = ""
+          if((answer.length * 5) == (currentLetterPlace * currentRowNum)){
+            informUser("the word was " + answer + "!")
+          } else {
+            informUser(currentGuess + " is not the word :(")
+            currentLetterPlace = 0
+            currentRowNum++
+            currentGuess = ""
+          }
         } else {
           informUser(currentGuess + " is not a word...")
         }

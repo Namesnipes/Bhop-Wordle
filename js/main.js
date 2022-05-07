@@ -12,6 +12,13 @@ var debug = ""
 var answer = ""
 var answers = []
 var len = 0
+
+//colors
+var green = "green"
+var yellow = "#d9d908"
+var white = "#a1a1a1"
+var black = "white"
+
 fetch('js/answers.txt')
   .then(response => response.text())
   .then(atext => {
@@ -25,7 +32,6 @@ fetch('js/answers.txt')
       len = answer.length
       var board = document.getElementById("board")
       board.style['grid-template-columns'] = "75px ".repeat(answer.length);
-      console.log("75px ".repeat(answer.length));
       var letter = document.getElementsByClassName("letter0")[0]
       for(var i = 1; i < (answer.length * 6); i++){
         var newletter = letter.cloneNode()
@@ -42,8 +48,10 @@ function colorKeyBoard(colorList){
     var elem = getKeyElement(key)
     if(keyInAnswer != -1){
       var color = colorList[keyInAnswer]
-      if(color == 'white') color = 'black'
+      if(color == white) color = black
       elem.style['background-color'] = color
+      elem.style["border-color"] = color
+      console.log('ok')
     }
   }
 
@@ -77,8 +85,9 @@ function clearRow(num) { //row num 0-n
 
 function colorRow(colors) {
   for (var i = 0; i < len; i++) {
-    document.getElementsByClassName('letter' + ((currentRowNum * len) + i))[0].style["background-color"] = colors[i]
-    console.log(document.getElementsByClassName('letter' + ((currentRowNum * len) + i)))
+    var el = document.getElementsByClassName('letter' + ((currentRowNum * len) + i))[0]
+    el.style["background-color"] = colors[i]
+    el.style["border-color"] = colors[i]
   }
 }
 
@@ -93,6 +102,7 @@ function isWord(word){
       return true;
     }
   }
+  console.log(word + " not word")
   return false
 }
 
@@ -101,7 +111,7 @@ function getLetterColors(answer, word) {
 
   for (var i = 0; i < len; i++) {
     if(word[i] == answer[i]){
-      colors[i] = "green"
+      colors[i] = green
       answer = answer.slice(0, i) + "-" + answer.slice(i + 1)
     }
   }
@@ -109,14 +119,14 @@ function getLetterColors(answer, word) {
     var letter = word[i]
     if ((answer[i] != letter) && answer.includes(letter)) {
       var whereIsIt = answer.indexOf(letter)
-      if(!colors[i]) colors[i] = "yellow"
+      if(!colors[i]) colors[i] = yellow
       answer = answer.slice(0, whereIsIt) + "-" + answer.slice(whereIsIt + 1)
     }
   }
 
   for (var i = 0; i < len; i++) {
     if (colors[i] == null) {
-      colors[i] = "white"
+      colors[i] = white
     }
   }
   return colors
