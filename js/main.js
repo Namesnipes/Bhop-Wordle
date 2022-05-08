@@ -30,7 +30,10 @@ fetch('js/answers.txt')
       words = text.split(/\r?\n/);
       len = answer.length
       var board = document.getElementById("board")
-      board.style['grid-template-columns'] = "60px ".repeat(answer.length);
+      var width = getComputedStyle(board)['grid-template-columns'].split(" ")[0]
+      console.log(width)
+      console.log(answer.length)
+      board.style['grid-template-columns'] = (width + " ").repeat(answer.length);
       var letter = document.getElementsByClassName("letter0")[0]
       for(var i = 1; i < (answer.length * 6); i++){
         var newletter = letter.cloneNode()

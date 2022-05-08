@@ -1,5 +1,4 @@
 function onKeyDown(e) {
-  console.log(e)
     if(answer == "") return
     var totalPlace = (currentRowNum * len) + currentLetterPlace
     if ("abcdefghijklmnopqrstuvwxyz".includes(e.key)) {

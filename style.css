@@ -2,6 +2,7 @@ body{
   font-family: sans-serif;
   background-color: #242424;
   color: white;
+  touch-action: manipulation;
 }
 
 #header{
@@ -17,7 +18,6 @@ body{
 
 #board{
   width: 350px;
-  height: 410px;
   margin: 0 auto;
   position: relative;
   display: grid;
@@ -42,16 +42,6 @@ body{
 #preview{
   width: 500px;
   height: 100px;
-}
-
-#tetris{
-  border: 2px solid #f2ede4;
-  border-radius: 4px;
-  margin: 0 auto;
-  position: absolute;
-  left: calc(50% + 400px);
-  top: 10px;
-  transform: translate(-50%, 0);
 }
 
 .row{
@@ -154,4 +144,69 @@ body{
   position: relative;
   top: -5px;
   cursor: pointer;
+}
+
+@media(max-width: 767px){
+
+  #board{
+    grid-template-columns: 40px 40px 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px 40px 40px 40px;
+    height: 310px
+    width: 450px
+  }
+
+  #toppart{
+    margin: 0 auto;
+    width: 450px;
+  }
+
+  #header{
+    text-align: center;
+    width: 450px;
+    margin: 0 auto;
+  }
+
+  #keyboard{
+    width: 450px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  #board > div {
+    border: 1px solid rgba(133, 133, 133, 1.0);
+    font-size: 20px;
+    text-align: center;
+    border-width: 1px;
+    border-radius: 1px;
+    font-weight: bold;
+    user-select: none;
+    line-height: 40px
+  }
+
+  .row1k{
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 35px;
+    display: grid;
+    justify-content: center;
+    padding: 5px;
+    column-gap: 5px;
+  }
+
+  .row2k{
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 35px;
+    display: grid;
+    justify-content: center;
+    padding: 5px;
+    column-gap: 5px;
+  }
+
+  .row3k{
+    grid-template-columns: 80px 40px 40px 40px 40px 40px 40px 40px 80px;
+    grid-template-rows: 35px;
+    display: grid;
+    justify-content: center;
+    padding: 5px;
+    column-gap: 5px;
+  }
 }
