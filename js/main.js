@@ -14,8 +14,8 @@ var answers = []
 var len = 0
 
 //colors
-var green = "green"
-var yellow = "#d9d908"
+var green = "#279e11"
+var yellow = "#cfd428"
 var white = "#a1a1a1"
 var black = "white"
 
@@ -28,10 +28,9 @@ fetch('js/answers.txt')
     .then(response => response.text())
     .then(text => {
       words = text.split(/\r?\n/);
-      console.log(words)
       len = answer.length
       var board = document.getElementById("board")
-      board.style['grid-template-columns'] = "75px ".repeat(answer.length);
+      board.style['grid-template-columns'] = "60px ".repeat(answer.length);
       var letter = document.getElementsByClassName("letter0")[0]
       for(var i = 1; i < (answer.length * 6); i++){
         var newletter = letter.cloneNode()

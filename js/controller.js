@@ -1,4 +1,5 @@
 function onKeyDown(e) {
+  console.log(e)
     if(answer == "") return
     var totalPlace = (currentRowNum * len) + currentLetterPlace
     if ("abcdefghijklmnopqrstuvwxyz".includes(e.key)) {
@@ -6,7 +7,7 @@ function onKeyDown(e) {
       if(currentLetterPlace != len)
       {
         var place = document.getElementsByClassName('letter' + totalPlace)[0]
-        place.innerText = e.key
+        place.innerText = e.key.toUpperCase()
         currentGuess += e.key
         currentLetterPlace++
       }
@@ -43,4 +44,23 @@ function onKeyDown(e) {
     }
 }
 
+function onClick(e){
+  var key = e.target.textContent
+  var fakeEvent = {}
+  fakeEvent['key'] = key.toLowerCase()
+  if(key == "BACK") fakeEvent['keyCode'] = 8
+  if(key == "ENTER") fakeEvent['keyCode'] = 13
+  onKeyDown(fakeEvent)
+}
+
 document.addEventListener('keydown', onKeyDown);
+
+var keys = document.getElementsByClassName("key")
+var skeys = document.getElementsByClassName("skey")
+for(var i = 0; i < keys.length; i++){
+  keys[i].addEventListener('mouseup', onClick)
+}
+
+for(var i = 0; i < skeys.length; i++){
+  skeys[i].addEventListener('mouseup', onClick)
+}

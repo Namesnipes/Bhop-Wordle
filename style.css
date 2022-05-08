@@ -17,25 +17,26 @@ body{
 
 #board{
   width: 350px;
-  height: 500px;
+  height: 410px;
   margin: 0 auto;
   position: relative;
   display: grid;
-  grid-template-columns: 75px 75px 75px 75px 75px;
-  grid-template-rows: 75px 75px 75px 75px 75px;
+  grid-template-columns: 60px 60px 60px 60px 60px;
+  grid-template-rows: 60px 60px 60px 60px 60px 60px;
   column-gap: 5px;
   row-gap: 10px;
   justify-content: center;
-  grid
 }
 
 #board > div {
   border: 1px solid rgba(133, 133, 133, 1.0);
-  padding: 20px;
   font-size: 30px;
   text-align: center;
-  border-width: 3px;
+  border-width: 1px;
   border-radius: 1px;
+  font-weight: bold;
+  user-select: none;
+  line-height: 60px
 }
 
 #preview{
@@ -92,12 +93,13 @@ body{
 
 #keyboard{
   width: 750px;
-  height: 200px;
+  height: 150px;
   margin: 0 auto;
 }
 
 .row1k{
   grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 35px;
   display: grid;
   justify-content: center;
   padding: 5px;
@@ -106,6 +108,7 @@ body{
 
 .row2k{
   grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 35px;
   display: grid;
   justify-content: center;
   padding: 5px;
@@ -114,6 +117,7 @@ body{
 
 .row3k{
   grid-template-columns: 100px 50px 50px 50px 50px 50px 50px 50px 100px;
+  grid-template-rows: 35px;
   display: grid;
   justify-content: center;
   padding: 5px;
@@ -123,15 +127,31 @@ body{
 .key{
   background-color: #858585;
   border: 1px solid #858585;
-  font-size: 30px;
+  font-size: 20px;
+  line-height: 35px;
   text-align: center;
   border-radius: 5px;
+  user-select: none;
+}
+
+.key:hover{
+  position: relative;
+  top: -5px;
+  cursor: pointer;
 }
 
 .skey{
   background-color: #858585;
   border: 1px solid #858585;
-  font-size: 28px;
+  font-size: 20px;
+  line-height: 35px;
   text-align: center;
   border-radius: 5px;
+  user-select: none;
+}
+
+.skey:hover{
+  position: relative;
+  top: -5px;
+  cursor: pointer;
 }
